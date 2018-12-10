@@ -11,12 +11,16 @@ public class FileSearch {
             byte arr[] = new byte[in.available()];
             in.read(arr);
             String text = new String(arr);
+
+            //Создание потока ввода данных
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            String keyword;
-            keyword = br.readLine();
-            if(keyword.contains(" "))
-                keyword = keyword.trim();
-            if(text.contains(keyword)){
+            String keyword = br.readLine();
+
+            if(keyword.contains(" ")) {
+                keyword = keyword.trim(); //Обрезка пробелов
+            }
+
+            if(text.contains(keyword)) { //Если фраза найдена в тексте
                 System.out.println(keyword);
             }
         } catch (IOException e) {
