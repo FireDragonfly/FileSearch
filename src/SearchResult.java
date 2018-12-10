@@ -9,4 +9,8 @@ public class SearchResult {
     public boolean isFound() {
         return numberOfEntries > 0;
     }
+
+    public int getNumberOfEntries() {
+        return numberOfEntries;
+    }
 }
