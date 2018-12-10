@@ -15,7 +15,7 @@ public class FileSearch {
             String keyword;
             keyword = br.readLine();
             if(keyword.contains(" "))
-                keyword = keyword.substring(0,keyword.indexOf(' '));
+                keyword = keyword.trim();
             if(text.contains(keyword)){
                 System.out.println(keyword);
             }
