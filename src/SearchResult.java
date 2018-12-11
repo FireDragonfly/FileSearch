@@ -34,6 +34,7 @@ public class SearchResult {
         }
         return count;
     }
+
     public HashMap<String, List<int[]>> getMatches() {
         return matches;
     }
