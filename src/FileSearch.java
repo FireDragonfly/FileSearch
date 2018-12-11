@@ -1,6 +1,4 @@
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -30,7 +28,7 @@ public class FileSearch {
             SearchResult searchResult = SearchEngine.find(keyword, filePath);
 
             System.out.println("\"" + keyword + "\" number of entries: " +
-                    searchResult.getNumberOfEntries());
+                    searchResult.getNumberOfMatches());
 
         } catch (IOException e) {
             e.printStackTrace();

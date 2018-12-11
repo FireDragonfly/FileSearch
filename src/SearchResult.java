@@ -1,16 +1,42 @@
+import java.util.HashMap;
+import java.util.List;
+
 public class SearchResult {
 
-    private int numberOfEntries;
 
-    public SearchResult(int numberOfEntries) {
-        this.numberOfEntries = numberOfEntries;
+    private HashMap<String, List<int[]>> matches;
+
+    private String query;
+
+    public SearchResult() {
+        this.matches = null;
+    }
+
+    public SearchResult(HashMap<String, List<int[]>> entries) {
+        this.matches = entries;
     }
 
     public boolean isFound() {
-        return numberOfEntries > 0;
+        return !matches.isEmpty();
     }
 
-    public int getNumberOfEntries() {
-        return numberOfEntries;
+    public int getNumberOfMatches() {
+        //Извлечение ключей в масив
+        String[] filesPath = new String[matches.size()];
+        matches.keySet().toArray(filesPath);
+
+        //Подсчет вхождений
+        int count = 0;
+        for (int i = 0; i < filesPath.length; i++) {
+            count += matches.get(filesPath[i]).size();
+        }
+        return count;
+    }
+    public HashMap<String, List<int[]>> getMatches() {
+        return matches;
+    }
+
+    public String getQuery() {
+        return query;
     }
 }
