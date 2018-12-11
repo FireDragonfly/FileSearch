@@ -11,26 +11,23 @@ public class FileSearch {
         String filePath;
 
         try {
-            //Создание потока ввода данных с консоли
+            //Создание потока ввода данных
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Введите путь/файл для поиска");
             filePath = br.readLine();
             System.out.println("Введите слово/фразу для поиска");
             String keyword = br.readLine();
 
-            //Если в запросе содержатся пробелы
             if(keyword.contains(" ")) {
-                keyword = keyword.trim(); //Обрезка пробелов в начале и конце
+                keyword = keyword.trim(); //Обрезка пробелов
             }
 
-            //Поиск
+            //Поиск и "распаковка" результата
             SearchResult searchResult = SearchEngine.find(keyword, filePath);
-            //"распаковка" результата(извлечение списка ключей)
             HashMap<String, List<int[]>> matches = searchResult.getMatches();
             String[] paths = new String[matches.size()];
             searchResult.getMatches().keySet().toArray(paths);
 
-            //Печать результата
             System.out.println("\"" + keyword + "\" number of entries: " +
                     searchResult.getNumberOfMatches()
                     + " in "
