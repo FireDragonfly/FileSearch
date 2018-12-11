@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.MalformedInputException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,6 +12,15 @@ public class SearchEngine {
 
     private static final int INITIAL_CAPACITY = 0;
 
+    private static final Charset[] CHARSETS = {
+            StandardCharsets.UTF_8
+            ,StandardCharsets.UTF_16
+            ,StandardCharsets.ISO_8859_1
+            ,StandardCharsets.US_ASCII
+            ,StandardCharsets.UTF_16BE
+            ,StandardCharsets.UTF_16LE
+    };
+
     public static SearchResult find(String query, String filePath)
             throws IOException {
 
@@ -18,12 +29,26 @@ public class SearchEngine {
         filesToList(Paths.get(filePath).toFile(), files);
 
         for (Path file : files) {
-            List<String> fileLines = Files.readAllLines(file, StandardCharsets.UTF_8);
-            List<int[]> entries = getEntries(fileLines, query);
+            for (Charset charset : CHARSETS) {
+                try {
+                    List<String> fileLines = Files.readAllLines(file, charset);
+                    List<int[]> entries = getEntries(fileLines, query);
 
-            if (!entries.isEmpty()){
-                matches.put(file.toString(), getEntries(fileLines, query));
+                    if (!entries.isEmpty()){
+                        matches.put(file.toString(), getEntries(fileLines, query));
+                    }
+                } catch (MalformedInputException e) {
+                    if (charset == CHARSETS[CHARSETS.length-1]){
+                        e.printStackTrace();
+                    }
+                    continue;
+                }
+                //Debug out
+//                System.out.println(file.toString() + "opened with encoding "
+//                        + charset.toString());
+                break;
             }
+
         }
 
         return new SearchResult(matches);

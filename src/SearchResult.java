@@ -3,6 +3,8 @@ import java.util.List;
 
 public class SearchResult {
 
+    public static final int LINE_INDEX = 0;
+    public static final int MATCH_START_INDEX = 1;
 
     private HashMap<String, List<int[]>> matches;
 
