@@ -1,65 +1,79 @@
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
+import javax.swing.*;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.awt.*;
 
-public class FileBrowser extends JFrame {
+class FileBrowser {
 
-    public FileBrowser() {
-        super("Тестовое окно");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public static void main(String args[]) {
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        panel.add(Box.createVerticalGlue());
 
-        final JLabel label = new JLabel("Выбранный файл");
-        label.setAlignmentX(CENTER_ALIGNMENT);
-        panel.add(label);
+//Creating the Frame
 
-        panel.add(Box.createRigidArea(new Dimension(10, 10)));
+        JFrame frame = new JFrame("Chat Frame");
 
-        JButton button = new JButton("Показать JFileChooser");
-        button.setAlignmentX(CENTER_ALIGNMENT);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser fileopen = new JFileChooser();
-                int ret = fileopen.showDialog(null, "Открыть файл");
-                if (ret == JFileChooser.APPROVE_OPTION) {
-                    File file = fileopen.getSelectedFile();
-                    label.setText(file.getName());
-                }
-            }
-        });
+        frame.setSize(400, 400);
 
-        panel.add(button);
-        panel.add(Box.createVerticalGlue());
-        getContentPane().add(panel);
 
-        setPreferredSize(new Dimension(260, 220));
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
+
+//Creating the MenuBar and adding components
+
+        JMenuBar mb = new JMenuBar();
+
+        JMenu m1 = new JMenu("FILE");
+
+        JMenu m2 = new JMenu("Help");
+
+        mb.add(m1);
+
+        mb.add(m2);
+
+        JMenuItem m22 = new JMenuItem("Save as");
+
+        m1.add(m1);
+
+        m1.add(m22);
+
+
+
+//Creating the panel at bottom and adding components
+
+        JPanel panel = new JPanel(); // the panel is not visible in output
+
+        JLabel label = new JLabel("Enter Text");
+
+        JTextField tf = new JTextField(10); // accepts upto 10 characters
+
+        JButton send = new JButton("Send");
+
+        JButton reset = new JButton("Reset");
+
+        panel.add(label); // Components Added using Flow Layout
+
+        panel.add(label); // Components Added using Flow Layout
+
+        panel.add(tf);
+
+
+
+// Text Area at the Center
+
+        JTextArea ta = new JTextArea();
+
+
+
+//Adding Components to the frame.
+
+        frame.getContentPane().add(BorderLayout.SOUTH, panel);
+
+        frame.getContentPane().add(BorderLayout.NORTH, mb);
+
+        frame.getContentPane().add(BorderLayout.CENTER, ta);
+
+        frame.setVisible(true);
+
     }
 
-    public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                JFrame.setDefaultLookAndFeelDecorated(true);
-                JDialog.setDefaultLookAndFeelDecorated(true);
-                new FileBrowser();
-            }
-        });
-    }
 }
