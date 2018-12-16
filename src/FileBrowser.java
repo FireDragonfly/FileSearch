@@ -28,38 +28,7 @@ import java.nio.channels.FileChannel;
 
 import java.net.URL;
 
-/**
- A basic File Manager.  Requires 1.6+ for the Desktop & SwingWorker
- classes, amongst other minor things.
-
- Includes support classes FileTableModel & FileTreeCellRenderer.
-
- @TODO Bugs
- <li>Still throws occasional AIOOBEs and NPEs, so some update on
- the EDT must have been missed.
- <li>Fix keyboard focus issues - especially when functions like
- rename/delete etc. are called that update nodes & file lists.
- <li>Needs more testing in general.
-
- @TODO Functionality
- <li>Implement Read/Write/Execute checkboxes
- <li>Implement Copy
- <li>Extra prompt for directory delete (camickr suggestion)
- <li>Add File/Directory fields to FileTableModel
- <li>Double clicking a directory in the table, should update the tree
- <li>Move progress bar?
- <li>Add other file display modes (besides table) in CardLayout?
- <li>Menus + other cruft?
- <li>Implement history/back
- <li>Allow multiple selection
- <li>Add file search
-
- @author Andrew Thompson
- @version 2011-06-01
- @see http://stackoverflow.com/questions/6182110
- @license LGPL
- */
-class FileManager {
+class FileBrowser {
 
     /** Title of the application */
     public static final String APP_TITLE = "FileMan";
