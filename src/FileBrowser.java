@@ -687,7 +687,7 @@ class FileBrowser {
                 JFrame f = new JFrame(APP_TITLE);
                 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-                FileManager fileManager = new FileManager();
+                FileBrowser fileManager = new FileBrowser();
                 f.setContentPane(fileManager.getGui());
 
                 try {
