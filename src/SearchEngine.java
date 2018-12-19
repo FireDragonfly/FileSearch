@@ -88,7 +88,7 @@ public class SearchEngine {
 
     //проверяет строку на пустоту
     private static boolean isEmpty(String str) {
-            return str == null || str.length() == 0;
+        return str == null ;
     }
 
     //Рекурсивный метод создания списка файлов находяшихся по указанному пути.
@@ -103,5 +103,4 @@ public class SearchEngine {
         } else {
             list.add(file.toPath());
         }
-    }
-}
+    }}
